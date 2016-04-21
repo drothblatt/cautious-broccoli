@@ -1,5 +1,3 @@
-### cautious-broccoli
+## Team Cautious-broccoli
 
-# Team Name: Cautious-broccoli
-
-# Members: David Rothblatt, Felipe Mansilla
+### Members: David Rothblatt, Felipe Mansilla
