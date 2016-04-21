@@ -17,8 +17,8 @@ var requestID;
 var counter = 0;
 var growing = true;
 var radius = 0;
-var dx = 214;
-var dy = 239;
+//var dx = 214;
+//var dy = 239;
 var down = true;
 var right = true;
 
@@ -63,11 +63,21 @@ function stop() {
   window.cancelAnimationFrame(requestID);
 };
 
+var dvd_instances = function(n){
+    var counter = 0;
+    while (counter < n) {
+	dvd();
+	counter++;
+    };
+};
+
 function dvd() {
   counter = counter + 1;
   if (counter > 1)
     window.cancelAnimationFrame(requestID);
-
+    
+  var dx = Math.floor(Math.random()*100) + 1 - 50  + c.width/2 ;
+  var dy = Math.floor(Math.random()*100) + 1 - 50  + c.height/2;
   ctx.clearRect(0,0,c.width, c.height);
   if (dy <= 0)
     down = true;
