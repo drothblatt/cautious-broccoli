@@ -9,9 +9,14 @@ var ball = function(){
     var r;
     // var requestID;
 
-    dx = Math.floor(Math.random() * 100) - 50 + ctx.width/2 ;
-    dy = Math.floor(Math.random() * 100) - 50 + ctx.height/2 ;
+    dx = Math.floor(Math.random() * 100) - 50 + c.width/2 ;
+    dy = Math.floor(Math.random() * 100) - 50 + c.height/2 ;
 
+    r = Math.floor(Math.random() * 60) + 20;
+
+    console.log(dx);
+    console.log(dy);
+    console.log(r);
 
     var getX = function(){
 	return dx;
@@ -26,13 +31,25 @@ var ball = function(){
     };
 
     var draw = function(){
-	ctx.beingPath();
+	ctx.beginPath();
 	ctx.arc(dx, dy, r, 0, Math.PI*2);
-	ctx.fillStyle = "blue";
+	ctx.stroke();
+	ctx.fillStyle = "#FF0000";
 	ctx.fill();
 	ctx.closePath();
+	console.log( "drawing complete" );
+    };
+    var drawTest = function(){
+	ctx.beginPath();
+	ctx.arc(dx, dy, 50 ,0,Math.PI*2);
+	ctx.stroke();
+	ctx.fillStyle="#FF0000";
+	ctx.fill();
+	ctx.closePath();
+	console.log("here, here");
     };
 
+    drawTest();
     return {
 	x: "this is a string in a dict",
 	getX: getX,
@@ -42,5 +59,8 @@ var ball = function(){
     };
 }
 
+
 var x = ball();
 var y = ball();
+
+
