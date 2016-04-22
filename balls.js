@@ -14,9 +14,9 @@ var down = true;
 var right = true;
 
 
-
 var ball = function(){
-    
+    //window.cancelAnimationFrame(requestID);
+
     dx = Math.floor(Math.random() * 601);
     dy = Math.floor(Math.random() * 601);
 
@@ -36,16 +36,18 @@ var ball = function(){
     };
 
     var draw = function(){
+
 	ctx.clearRect(0,0,c.width, c.height);
 	ctx.strokeRect(0,0,c.width, c.height);
+
 	if (dy <= 0)
 	    down = true;
-	else if (dy >= c.height - 50)
+	else if (dy >= c.height - r)
 	    down = false;
 
 	if (dx <= 0)
 	    right = true;
-	else if (dx >= c.width - 100)
+	else if (dx >= c.width - r)
 	    right = false;
 
 	if (down)
@@ -67,11 +69,14 @@ var ball = function(){
 	ctx.fillStyle= color;
 	ctx.fill();
 	ctx.closePath();
-	requestID = window.requestAnimationFrame( draw );
-	//console.log("here, here");
-    };
 
-    draw();
+	requestID = window.requestAnimationFrame(draw);
+	//console.log(dx + ", "+ dy + ", " + r); 
+
+    };
+    
+    //draw();
+
     return {
 	x: "this is a string in a dict",
 	getX: getX,
@@ -85,7 +90,7 @@ var n = Math.floor(Math.random() * 10) + 5
 console.log(n);
 var balls = new Array(n);
 for (i=0; i<balls.length;i++){
-    balls[i] = ball();
+    balls[i] = ball().draw();
 };
 
 console.log(balls);
