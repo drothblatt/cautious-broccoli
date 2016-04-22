@@ -6,12 +6,17 @@ var cl = document.getElementById("clear");
 
 var colors = [ "#0000ff", " #ff3300", " #009933", " #ff00ff", " #ff661a", " #66ffff", " #669999" ," #000000"]
 
+var requestID;
+var r;
+var dx;
+var dy;
+var down = true;
+var right = true;
+
+
 
 var ball = function(){
-    var dx, dy;
-    var r;
-    // var requestID;
-
+    
     dx = Math.floor(Math.random() * 601);
     dy = Math.floor(Math.random() * 601);
 
@@ -31,6 +36,30 @@ var ball = function(){
     };
 
     var draw = function(){
+	ctx.clearRect(0,0,c.width, c.height);
+	ctx.strokeRect(0,0,c.width, c.height);
+	if (dy <= 0)
+	    down = true;
+	else if (dy >= c.height - 50)
+	    down = false;
+
+	if (dx <= 0)
+	    right = true;
+	else if (dx >= c.width - 100)
+	    right = false;
+
+	if (down)
+	    dy += Math.random() + 1;
+
+	else
+	    dy -= Math.random() + 1;
+
+	if (right)
+	    dx += Math.random() + 1;
+
+	else
+	    dx -= Math.random() + 1;
+
 	ctx.beginPath();
 	ctx.arc(dx, dy, r ,0,Math.PI*2);
 	ctx.stroke();
@@ -38,7 +67,8 @@ var ball = function(){
 	ctx.fillStyle= color;
 	ctx.fill();
 	ctx.closePath();
-	console.log("here, here");
+	requestID = window.requestAnimationFrame( draw );
+	//console.log("here, here");
     };
 
     draw();
